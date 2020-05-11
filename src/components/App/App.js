@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import reduxLogo from './redux.svg';
 import './App.css';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // components
@@ -11,11 +12,22 @@ import Dashboard from '../Dashboard/Dashboard';
 
 
 class App extends Component {
+
+  componentDidMount(){
+    console.log(('in componentDidMount', this.props));
+    
+  }
+
+  clickHandler = () => {
+    console.log('in clickHandler', this.props.reduxState);
+  }
+
   render() {
     return (
       <Router>
           <div className="App">
             <header className="App-header">
+            <button onClick={this.clickHandler}>Check Redux</button>
               <img src={logo} className="App-logo" alt="logo" />
               <img src={reduxLogo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to React Redux</h1>
@@ -29,9 +41,12 @@ class App extends Component {
             </header>
 
             <div className="content-container">
-              <Route exact path="/" component={SpeedControl} />
-              <Route path="/passengers" component={Passengers} />
-              <Route path="/dashboard" component={Dashboard} />
+              {/* <Route exact path="/" component={SpeedControl} /> */}
+              {/* <Route path="/passengers" component={Passengers} /> */}
+              {/* <Route path="/dashboard" component={Dashboard} /> */}
+            <Route exact path="/" render={(props) => <SpeedControl {...props} dispatch={this.props.dispatch} reduxState={this.props.reduxState} />}/>
+            <Route path="/passengers" render={(props) => <Passengers {...props} dispatch={this.props.dispatch} reduxState={this.props.reduxState} />} />
+            <Route path="/dashboard" render={(props) => <Dashboard {...props} dispatch={this.props.dispatch} reduxState={this.props.reduxState} />} />
             </div>
 
           </div>
@@ -39,5 +54,6 @@ class App extends Component {
     );
   }
 }
+const putReduxStateOnProps = (reduxState) => ({reduxState});
 
-export default App;
+export default connect(putReduxStateOnProps)(App);

@@ -4,15 +4,32 @@ import React, { Component } from 'react';
 // INPUT SHOULD COLLECT INFO, BUTTON SHOULD ADD THEM TO THE LIST
 
 class Passengers extends Component {
+
+handleChange = (event, property)=>{
+  console.log("in handleChange");
+  this.setState({
+    passenger: event.target.value
+  })
+} 
+
+  addPassenger = ()=>{
+  console.log('in addPassenger', this.state.passenger);
+  if(this.state.passenger){
+    this.props.dispatch({ type: "newCrew", payload: this.state.passenger});
+  }
+}
+
+
+
   render() {
     return (
       <div>
         <h2>Passengers</h2>
 
-        <input type="text" name="name" placeholder="Enter Name" />
-        <button>Add Passenger</button>
+        <input type="text" name="name" placeholder="Enter Name" onChange={this.handleChange}/>
+        <button onClick={this.addPassenger}>Add Passenger</button>
 
-        <ul>PASSENGER LIST: GOES HERE</ul>
+        <ul>PASSENGER LIST: {JSON.stringify(this.reduxState)}</ul>
       
       </div>
     )

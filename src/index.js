@@ -6,22 +6,24 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 
 
-const state = {
+const firstReducerInitialState = {
     speed: 0,
-    passengers: ["Alan"]
+    passengers: ["Alan"],
 };
     
 
 // put your reducer here!
-const firstReducer = (state, action)=>{
+const firstReducer = (state = firstReducerInitialState, action)=>{
     console.log('in firstReducer', state, action);
     if(action === "faster"){
-        return {speed: this.state.speed + 1}
+        console.log(this.state.speed);
+        return {...state, speed: this.state.speed + 1}
     } else if (action.type === "slower") {
-        return { speed: this.state.speed - 1 }
+        return {...state, speed: this.state.speed - 1 }
     } else if (action.type === "newCrew") {
         return { ...state, passengers: action.payload }
     }
+    return state;
 }
 
 // use reducer in store

@@ -13,6 +13,7 @@ import Dashboard from '../Dashboard/Dashboard';
 
 class App extends Component {
 
+
   componentDidMount(){
     console.log(('in componentDidMount', this.props));
     
@@ -41,9 +42,6 @@ class App extends Component {
             </header>
 
             <div className="content-container">
-              {/* <Route exact path="/" component={SpeedControl} /> */}
-              {/* <Route path="/passengers" component={Passengers} /> */}
-              {/* <Route path="/dashboard" component={Dashboard} /> */}
             <Route exact path="/" render={(props) => <SpeedControl {...props} dispatch={this.props.dispatch} reduxState={this.props.reduxState} />}/>
             <Route path="/passengers" render={(props) => <Passengers {...props} dispatch={this.props.dispatch} reduxState={this.props.reduxState} />} />
             <Route path="/dashboard" render={(props) => <Dashboard {...props} dispatch={this.props.dispatch} reduxState={this.props.reduxState} />} />
@@ -54,6 +52,7 @@ class App extends Component {
     );
   }
 }
+
 const putReduxStateOnProps = (reduxState) => ({reduxState});
 
 export default connect(putReduxStateOnProps)(App);

@@ -20,7 +20,9 @@ const firstReducer = (state = firstReducerInitialState, action)=>{
     } else if (action.type === "slower") {
         return { ...state, speed: state.speed - 1 }
     } else if (action.type === "newCrew") {
-        return { ...state, passengers: action.payload }
+        // return { ...state, passengers: action.payload.passengers }
+        return { ...state, ...state.passengers, passengers: action.payload}
+        // return { ...state, action.payload }
     }
     return state;
 }

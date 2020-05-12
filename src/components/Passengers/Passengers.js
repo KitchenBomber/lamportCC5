@@ -14,9 +14,8 @@ handleChange = (event, property)=>{
 
   addPassenger = ()=>{
   console.log('in addPassenger', this.state.passenger);
-  if(this.state.passenger){
     this.props.dispatch({ type: "newCrew", payload: this.state.passenger});
-  }
+ 
 }
 
 

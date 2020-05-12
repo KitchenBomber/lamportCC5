@@ -29,7 +29,7 @@ handleChange = (event, property)=>{
         <input type="text" name="name" placeholder="Enter Name" onChange={this.handleChange}/>
         <button onClick={this.addPassenger}>Add Passenger</button>
 
-        <ul>PASSENGER LIST: {JSON.stringify(this.reduxState.passengers)}</ul>
+        <ul>PASSENGER LIST: {this.props.reduxState.passengers}</ul>
       
       </div>
     )

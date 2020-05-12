@@ -10,8 +10,8 @@ class Dashboard extends Component {
       <div>
         <h2>Dashboard</h2>
         
-        <p>SPEED: {JSON.stringify(this.props.reduxState)}</p>
-        <p>PASSENGER COUNT: {JSON.stringify(this.props.reduxState)}</p>
+        <p>SPEED: {this.props.reduxState.speed}</p>
+        <p>PASSENGER COUNT: {this.props.reduxState.passengers}</p>
       </div>
     )
   }

@@ -5,12 +5,12 @@ import React, { Component } from 'react';
 
 class SpeedControl extends Component {
 
-speedUp = (event, property)=>{
+speedUp = ()=>{
   console.log('in speedUp');
-  this.props.dispatch({ type: "faster", payload: 1})
+  this.props.dispatch({ type: "faster" })
 }
 
-  speedDown = (event, property) => {
+  speedDown = () => {
     console.log('in speedUp');
     this.props.dispatch({ type: "slower", payload: 1 })
   }
@@ -21,7 +21,7 @@ speedUp = (event, property)=>{
         <h2>Speed Control</h2>
 
         <button onClick={this.speedUp}>Increase Speed</button>
-        <p>SPEED: {JSON.stringify(this.props.reduxState)}</p>
+        <p>SPEED: {this.props.reduxState.speed}</p>
         <button onClick={this.speedDown}>Decrease Speed</button>
       </div>
     )

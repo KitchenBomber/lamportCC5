@@ -15,11 +15,10 @@ const firstReducerInitialState = {
 // put your reducer here!
 const firstReducer = (state = firstReducerInitialState, action)=>{
     console.log('in firstReducer', state, action);
-    if(action === "faster"){
-        console.log(this.state.speed);
-        return {...state, speed: this.state.speed + 1}
+    if(action.type === "faster"){
+        return { ...state, speed: state.speed + 1}
     } else if (action.type === "slower") {
-        return {...state, speed: this.state.speed - 1 }
+        return { ...state, speed: state.speed - 1 }
     } else if (action.type === "newCrew") {
         return { ...state, passengers: action.payload }
     }
